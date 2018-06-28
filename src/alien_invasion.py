@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 def run_game():
 
@@ -17,18 +18,15 @@ def run_game():
     # 创建一艘飞船
     ship = Ship(screen)
 
+    # 开始游戏主循环
     while True:
 
         # 监视鼠标和键盘事件
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-
-        # 让最近绘制的屏幕可见
-        pygame.display.flip()
+        gf.check_events(ship)
+        # 更新飞船
+        ship.update()
+        # 更新屏幕
+        gf.update_screen(ai_settings, screen, ship)
 
 
 run_game()
