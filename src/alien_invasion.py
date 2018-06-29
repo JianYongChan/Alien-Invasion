@@ -28,15 +28,11 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
         # 更新飞船
         ship.update()
-        # 更新子弹
-        bullets.update()
 
-        # 删除已经消失的子弹
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
+        gf.update_bullets(bullets)
 
         # print(len(bullets)) 检验是否成功删除了消失的子弹
+
         # 更新屏幕
         gf.update_screen(ai_settings, screen, ship, bullets)
 
